@@ -1,9 +1,12 @@
 package com.appplication.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,25 +25,32 @@ public class UserController {
 	}
 	
 	@PostMapping("/addUsers")
-	public String addUsers(@RequestBody() UserDTO user) {
+	public String addUser(@RequestBody() UserDTO user) {
 		   userService.addUser(user);
 		   return "user added successfully";
 	}
 	
 	@GetMapping("/viewUsers/{id}")
-	public User viewUsers(@PathVariable Long id, UserDTO retrieve) {
-		 return  userService.viewUser(id,retrieve);
+	public User viewUser(@PathVariable Long id) {
+		 return  userService.viewUser(id);
 		   
 	}
 	
-	@PostMapping("/updateUsers/{id}")
-	public User updateUsers(@PathVariable Long id) {
-		return userService.updateUser(id);
+	@PutMapping("/updateUsers/{id}")
+	public String updateUser(@PathVariable Long id, UserDTO retrieve) {
+		 userService.updateUser(id, retrieve);
+	   return "updated";         
 	}
 	
 	@DeleteMapping("/deleteUsers/{id}")
 	public String deleteUsers(@PathVariable Long id) {
 		userService.deleteUser(id);
 		return "user deleted";
+	}
+	
+	@GetMapping("/viewAll")
+	public List<User> viewAll() {
+		return userService.viewAll();
+		 
 	}
 }

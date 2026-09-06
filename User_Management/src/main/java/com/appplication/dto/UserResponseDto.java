@@ -4,29 +4,26 @@ import java.time.LocalDate;
 
 import com.appplication.entity.Gender;
 
-   
-public class UserDTO {
-	 
+public class UserResponseDto {
+
   	String username;
  	String email;
- 	String password;
- 	String mobile;
+  	String mobile;
  	LocalDate dob;
   	Gender gender;
   	String address;
   	String dpUr;
   	String createAt;
  	String updatedAt;
-	public UserDTO() {
+	public UserResponseDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserDTO(String username, String email, String password, String mobile, LocalDate dob, Gender gender,
-			String address, String dpUr, String createAt, String updatedAt) {
+	public UserResponseDto(String username, String email, String mobile, LocalDate dob, Gender gender, String address,
+			String dpUr, String createAt, String updatedAt) {
 		super();
 		this.username = username;
 		this.email = email;
-		this.password = password;
 		this.mobile = mobile;
 		this.dob = dob;
 		this.gender = gender;
@@ -35,8 +32,6 @@ public class UserDTO {
 		this.createAt = createAt;
 		this.updatedAt = updatedAt;
 	}
-	 
-	 
 	public String getUsername() {
 		return username;
 	}
@@ -48,12 +43,6 @@ public class UserDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getMobile() {
 		return mobile;
@@ -99,10 +88,11 @@ public class UserDTO {
 	}
 	@Override
 	public String toString() {
-		return "UserDTO [username=" + username + ", email=" + email + ", password=" + password
-				+ ", mobile=" + mobile + ", dob=" + dob + ", gender=" + gender + ", address=" + address + ", dpUr="
-				+ dpUr + ", createAt=" + createAt + ", updatedAt=" + updatedAt + "]";
+		return "UserResponseDto [username=" + username + ", email=" + email + ", mobile=" + mobile + ", dob=" + dob
+				+ ", gender=" + gender + ", address=" + address + ", dpUr=" + dpUr + ", createAt=" + createAt
+				+ ", updatedAt=" + updatedAt + "]";
 	}
+ 	
  	
  	
 }

@@ -1,5 +1,7 @@
 package com.appplication.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,30 +17,47 @@ public class User {
     
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	Long id;
+	private  Long id;
+	@Column(nullable=false, length = 100)
+	private  String username;
+	@Column(nullable=false, unique= true, length = 100)
+	private  String email;
 	@Column(nullable=false)
-	String username;
-	@Column(nullable=false, unique= true)
-	String email;
+	private  String password;
 	@Column(nullable=false)
-	String password;
+	private  String mobile;
 	@Column(nullable=false)
-	@Enumerated(EnumType.STRING)
-	Enum role;
+	private  LocalDate dob;
+	
+ 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false)
-	String createAt;
-	@Column(nullable=false)
-	String updatedAt;
+	private Gender gender;
+ 	
+ 	@Column(nullable=false)
+	private  String address;
+ 	
+ 	@Column(nullable=false)
+	private  String dpUr;
+ 	
+	@Column
+	private String createAt;
+	@Column
+	private String updatedAt;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String username, String email, String password, Enum role, String createAt, String updatedAt) {
+	public User(String username, String email, String password, String mobile, LocalDate dob, Gender gender,
+			String address, String dpUr, String createAt, String updatedAt) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		this.mobile = mobile;
+		this.dob = dob;
+		this.gender = gender;
+		this.address = address;
+		this.dpUr = dpUr;
 		this.createAt = createAt;
 		this.updatedAt = updatedAt;
 	}
@@ -66,11 +85,35 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Enum getRole() {
-		return role;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setRole(Enum role) {
-		this.role = role;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public LocalDate getDob() {
+		return dob;
+	}
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
+	public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getDpUr() {
+		return dpUr;
+	}
+	public void setDpUr(String dpUr) {
+		this.dpUr = dpUr;
 	}
 	public String getCreateAt() {
 		return createAt;
@@ -86,9 +129,10 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", role="
-				+ role + ", createAt=" + createAt + ", updatedAt=" + updatedAt + "]";
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", mobile="
+				+ mobile + ", dob=" + dob + ", gender=" + gender + ", address=" + address + ", dpUr=" + dpUr
+				+ ", createAt=" + createAt + ", updatedAt=" + updatedAt + "]";
 	}
-	
+	 
 	
 }
