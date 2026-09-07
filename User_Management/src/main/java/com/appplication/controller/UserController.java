@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appplication.dto.UserDTO;
+import com.appplication.dto.UserResponseDto;
 import com.appplication.entity.User;
 import com.appplication.service.UserServiceImplementation;
 
 @RestController
 public class UserController {
       
-	UserServiceImplementation userService;
+	private final UserServiceImplementation userService;
 
 	public UserController(UserServiceImplementation userService) {
 		super();
@@ -31,13 +32,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/viewUsers/{id}")
-	public User viewUser(@PathVariable Long id) {
+	public UserResponseDto viewUser(@PathVariable Long id) {
 		 return  userService.viewUser(id);
 		   
 	}
 	
 	@PutMapping("/updateUsers/{id}")
-	public String updateUser(@PathVariable Long id, UserDTO retrieve) {
+	public String updateUser(@PathVariable Long id, @RequestBody UserDTO retrieve) {
 		 userService.updateUser(id, retrieve);
 	   return "updated";         
 	}

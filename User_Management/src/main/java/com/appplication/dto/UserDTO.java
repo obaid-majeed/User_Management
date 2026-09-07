@@ -1,6 +1,7 @@
 package com.appplication.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.appplication.entity.Gender;
 
@@ -15,14 +16,14 @@ public class UserDTO {
   	Gender gender;
   	String address;
   	String dpUr;
-  	String createAt;
- 	String updatedAt;
+  	LocalDateTime createAt;
+  	LocalDateTime updatedAt;
 	public UserDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public UserDTO(String username, String email, String password, String mobile, LocalDate dob, Gender gender,
-			String address, String dpUr, String createAt, String updatedAt) {
+			String address, String dpUr, LocalDateTime createAt, LocalDateTime updatedAt) {
 		super();
 		this.username = username;
 		this.email = email;
@@ -85,16 +86,16 @@ public class UserDTO {
 	public void setDpUr(String dpUr) {
 		this.dpUr = dpUr;
 	}
-	public String getCreateAt() {
+	public LocalDateTime getCreateAt() {
 		return createAt;
 	}
-	public void setCreateAt(String createAt) {
+	public void setCreateAt(LocalDateTime createAt) {
 		this.createAt = createAt;
 	}
-	public String getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
-	public void setUpdatedAt(String updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 	@Override

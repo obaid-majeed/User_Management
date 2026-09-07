@@ -1,6 +1,10 @@
 package com.appplication.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -39,16 +44,25 @@ public class User {
  	@Column(nullable=false)
 	private  String dpUr;
  	
-	@Column
-	private String createAt;
-	@Column
-	private String updatedAt;
+ 	@CreatedDate
+ 	@Column(name = "created_at", nullable = false, updatable = false) // Force exact DB column name
+ 	private LocalDateTime createdAt;
+
+ 	@LastModifiedDate
+ 	@Column(name = "updated_at") // Force exact DB column name
+ 	private LocalDateTime updatedAt;
+ 	
+ 	@PrePersist
+ 	public void onCreate() {
+ 	    createdAt = LocalDateTime.now();
+ 	}
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public User(String username, String email, String password, String mobile, LocalDate dob, Gender gender,
-			String address, String dpUr, String createAt, String updatedAt) {
+			String address, String dpUr, LocalDateTime createdAt, LocalDateTime  updatedAt) {
 		super();
 		this.username = username;
 		this.email = email;
@@ -58,7 +72,7 @@ public class User {
 		this.gender = gender;
 		this.address = address;
 		this.dpUr = dpUr;
-		this.createAt = createAt;
+		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
 	public Long getId() {
@@ -115,23 +129,17 @@ public class User {
 	public void setDpUr(String dpUr) {
 		this.dpUr = dpUr;
 	}
-	public String getCreateAt() {
-		return createAt;
+	public LocalDateTime  getCreateAt() {
+		return createdAt;
 	}
-	public void setCreateAt(String createAt) {
-		this.createAt = createAt;
+	public void setCreateAt(LocalDateTime  createAt) {
+		this.createdAt = createAt;
 	}
-	public String getUpdatedAt() {
+	public LocalDateTime  getUpdatedAt() {
 		return updatedAt;
 	}
-	public void setUpdatedAt(String updatedAt) {
+	public void setUpdatedAt(LocalDateTime  updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", mobile="
-				+ mobile + ", dob=" + dob + ", gender=" + gender + ", address=" + address + ", dpUr=" + dpUr
-				+ ", createAt=" + createAt + ", updatedAt=" + updatedAt + "]";
 	}
 	 
 	
