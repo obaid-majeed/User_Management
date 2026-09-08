@@ -32,7 +32,7 @@ public class UserServiceImplementation implements UserService {
 		if (userRepository.existsByEmail(user.getEmail())) {
 			return "Email already exists";
 		}
-		if (userRepository.existsMobile(user.getMobile())) {
+		if (userRepository.existsByMobile(user.getMobile())) {
 			return "Mobile already exists";
 		}
 		
@@ -77,7 +77,7 @@ public class UserServiceImplementation implements UserService {
 			User existUser = optionalUser.get();
 			existUser.setUsername(retrieve.getUsername());
 			existUser.setEmail(retrieve.getEmail());
-			existUser.setPassword(retrieve.getPassword());
+			existUser.setPassword(passwordEncoder.encode(retrieve.getPassword()));
 			existUser.setAddress(retrieve.getAddress());
 			existUser.setMobile(retrieve.getMobile());
 			existUser.setDob(retrieve.getDob());

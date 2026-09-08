@@ -25,26 +25,26 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-	@PostMapping("/addUsers")
+	@PostMapping("/addUser")
 	public String addUser(@RequestBody() UserDTO user) {
 		   userService.addUser(user);
 		   return "user added successfully";
 	}
 	
-	@GetMapping("/viewUsers/{id}")
+	@GetMapping("/viewUser/{id}")
 	public UserResponseDto viewUser(@PathVariable Long id) {
 		 return  userService.viewUser(id);
 		   
 	}
 	
-	@PutMapping("/updateUsers/{id}")
+	@PutMapping("/updateUser/{id}")
 	public String updateUser(@PathVariable Long id, @RequestBody UserDTO retrieve) {
 		 userService.updateUser(id, retrieve);
 	   return "updated";         
 	}
 	
-	@DeleteMapping("/deleteUsers/{id}")
-	public String deleteUsers(@PathVariable Long id) {
+	@DeleteMapping("/deleteUser/{id}")
+	public String deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 		return "user deleted";
 	}
